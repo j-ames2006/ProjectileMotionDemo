@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projectile Motion Simulator</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script>
+        //when the different checkboxes are clicked
+        function check_vel(){
+            document.getElementById("SLD").checked = false
+            document.getElementById("grav").checked = false
+            document.getElementById("Tar_coord").checked = false
+            document.getElementById("air_res").checked = false
+            document.getElementById("Vel_Hei_page").style.display = 'block'
+            document.getElementById("sld_page").style.display = 'none'
+            document.getElementById("grav_page").style.display = 'none'
+            document.getElementById("tar_coord_page").style.display = 'none'
+            document.getElementById("air_res_page").style.display = 'none'
+        }
+        function check_SLD(){
+            document.getElementById("Vel_Hei").checked = false
+            document.getElementById("grav").checked = false
+            document.getElementById("Tar_coord").checked = false
+            document.getElementById("air_res").checked = false
+            document.getElementById("Vel_Hei_page").style.display = 'none'
+            document.getElementById("sld_page").style.display = 'block'
+            document.getElementById("grav_page").style.display = 'none'
+            document.getElementById("tar_coord_page").style.display = 'none'
+            document.getElementById("air_res_page").style.display = 'none'
+        }
+        function check_grav(){
+            document.getElementById("Vel_Hei").checked = false
+            document.getElementById("SLD").checked = false
+            document.getElementById("Tar_coord").checked = false
+            document.getElementById("air_res").checked = false
+            document.getElementById("Vel_Hei_page").style.display = 'none'
+            document.getElementById("sld_page").style.display = 'none'
+            document.getElementById("grav_page").style.display = 'block'
+            document.getElementById("tar_coord_page").style.display = 'none'
+            document.getElementById("air_res_page").style.display = 'none'
+        }
+        function check_Tar(){
+            document.getElementById("Vel_Hei").checked = false
+            document.getElementById("SLD").checked = false
+            document.getElementById("grav").checked = false
+            document.getElementById("air_res").checked = false
+            document.getElementById("Vel_Hei_page").style.display = 'none'
+            document.getElementById("sld_page").style.display = 'none'
+            document.getElementById("grav_page").style.display = 'none'
+            document.getElementById("tar_coord_page").style.display = 'block'
+            document.getElementById("air_res_page").style.display = 'none'
+        }
+        function check_air(){
+            document.getElementById("Vel_Hei").checked = false
+            document.getElementById("SLD").checked = false
+            document.getElementById("grav").checked = false
+            document.getElementById("Tar_coord").checked = false
+            document.getElementById("Vel_Hei_page").style.display = 'none'
+            document.getElementById("sld_page").style.display = 'none'
+            document.getElementById("grav_page").style.display = 'none'
+            document.getElementById("tar_coord_page").style.display = 'none'
+            document.getElementById("air_res_page").style.display = 'block'
+        }
+    </script>
+</head>
+<body>
+    <script type="module" src="javascript.js"></script>
+    <canvas id="myCanvas" style="border: solid #000000;"></canvas>
+    <div>
+        <div id="rectangle_left_main">
+            x-velocity
+            <input type="text" id="vel_x" readonly="true" style="width: 50px;">
+            y-velocity
+            <input type="text" id="vel_y" readonly="true" style="width: 50px;">
+            x-displacement
+            <input type="text" id="disp_x" readonly="true" style="width: 50px;">
+            y-displacement
+            <input type="text" id="disp_y" readonly="true" style="width: 50px;">
+            <div id="rectangle_right_main">
+                <div id="rectangle_left_hub">
+                    <div class="rectangle_check">
+                        <button id="launch_button" type="button">Launch</button>
+                        Velocities and Heights
+                        <input type="checkbox" onchange="check_vel()" id="Vel_Hei">
+                        <div id="Vel_Hei_page" style="display: none;">
+                            <div id="vel_angle_page">
+                                Angle and Velocity
+                                <input type="radio" id="angle" checked="checked" name="vel_choice"><br><br>
+                                Velocity (1-100m/s)
+                                <input type="number" min="0" max="100" step="0.1" id="vel_txt_box" style="width: 50px;">
+                                <input type="range" id="vel_slider" min="1" max="100" value="1" step="0.1" style="width: 200px;">
+                                <br><br>
+                                Angle (-90 - 90)
+                                <input type="number" min="0" max="100" id="ang_txt_box" style="width: 50px;">
+                                <input type="range" id="ang_slider" min="-90" max="90" value="0" style="width: 200px;">
+                            </div>
+                            <div id="vel_2_page">
+                                X and Y velocity
+                                <input type="radio" id="2_vel" name="vel_choice"><br><br>
+                                X-velocity (0-100m/s)
+                                <input type="number" min="0" max="100" step="0.1" id="x_vel_txt_box" style="width: 50px;">
+                                <input type="range" id="x_vel_slider" min="0" max="100" value="0" step="0.1" style="width: 200px;">
+                                <br><br>
+                                Y-velocity (0-100m/s)
+                                <input type="number" min="0" max="100" step="0.1" id="y_vel_txt_box" style="width: 50px;">
+                                <input type="range" id="y_vel_slider" min="0" max="100" value="0" step="0.1" style="width: 200px;">
+                            </div>
+                            <div id="start_height">
+                                Starting Height (0-100m)
+                                <input type="number" id="start_height_txt_box" min="0" max="100" step="0.1" style="width: 50px;"><br>
+                                <input type="range" id="start_height_slider" min="0" max="100" value="0" step="0.1" style="width: 300px; margin-left: 10px;">
+                            </div>
+                        </div>
+                        <div id="sld_page" style="display: none;">
+                            <table style="border: 1px solid #000000;">
+                                <tr style="border: 1px solid #000000;">
+                             
+                                </tr>
+                            </table>
+                        </div>
+                        <div id="grav_page" style="display: none;">
+                            <br>
+                            Gravities (0.1-25m/s/s)
+                            <input type="number" id="grav_txt_box" min="0.1" max="25" step="0.1" value="0.1" style="width: 50px;">
+                            <input type="range" id="grav_slider" min="0.1" max="25" step="0.1" value="9.8" style="width: 300px;">
+                            <br>
+                            <br>
+                            Select different Gravitational Strengths from planets<br>
+                            <select id="planets_list" style="width: 100px;">
+                                <option value="Earth">Earth</option>
+                                <option value="Mercury">Mercury</option>
+                                <option value="Venus">Venus</option>
+                                <option value="Mars">Mars</option>
+                                <option value="Jupiter">Jupiter</option>
+                                <option value="Saturn">Saturn</option>
+                                <option value="Neptune">Neptune</option>
+                                <option value="Uranus">Uranus</option>
+                            </select>
+                        </div>
+                        <div id="tar_coord_page" style="display: none;">
+
+                        </div>
+                        <div id="air_res_page" style="display: none;">
+                            <br>
+                            Air Resistance
+                            <input type="checkbox" id="air_res_choice">
+                            <br><br>
+                            Drag Coefficient (0.01-2.00)
+                            <input type="number" min="0.01" max="2.00" value="0.35" step="0.01" id="drag_coef_txt_box" style="width: 50px;"><br>
+                            <input type="range" min="0.01" max="2.00" value="0.35" step="0.01" id="drag_coef_slider" style="width: 200px;">
+                            <br><br>
+                            Mass (1-50kg)
+                            <input type="number" min="1" max="50" step="1" value="10" id="mass_txt_box" style="width: 50px;">
+                            <br><input type="range" min="1" max="50" step="1" value="10" id="mass_slider" style="width: 200px;">
+                            <br><br>
+                            Diameter (1-10m)
+                            <input type="number" min="1" max="30" step="0.1" value="5" id="diam_txt_box" style="width: 50px;">
+                            <br><input type="range" min="1" max="30" step="0.1" value="5" id="diam_slider" style="width: 200px;">
+                        </div>
+                    </div>
+                    <div class="rectangle_check"><br>
+                        Save, Load, Delete
+                        <input type="checkbox" onchange="check_SLD()"  id="SLD">
+                    </div>
+                    <div class="rectangle_check"><br>
+                        Gravities
+                        <input type="checkbox" onchange="check_grav()" id="grav">
+                    </div>
+                    <div class="rectangle_check"><br>
+                        Target Coordinates
+                        <input type="checkbox" onchange="check_Tar()" id="Tar_coord">
+                    </div>
+                    <div class="rectangle_check"><br>
+                        Air Resistance
+                        <input type="checkbox" onchange="check_air()" id="air_res">
+                    </div>
+                </div>
+            </div>
+            </div>
+</body>
+</html>

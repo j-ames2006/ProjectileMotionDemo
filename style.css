@@ -1,0 +1,78 @@
+#rectangle_left_main{
+    height: 225px;
+    width: 600px;
+    border: 1px solid #000000;
+}
+#rectangle_right_main{
+    height: 225px;
+    width: 650px;
+    margin-left: 600px;
+    border: 1px solid #000000;
+    margin-top: -22.6px;
+}
+#rectangle_left_hub{
+    height: 225px;
+    width: 170px;
+    border: 1px solid #000000;
+}
+.rectangle_check{
+    height: 43.2px;
+    width: 170px;
+    border: 1px solid #000000;
+}
+#launch_button{
+    margin-left: 589px;
+}
+#Vel_Hei_page{
+    height: 225px;
+    width: 477px;
+    border: 1px solid #000000;
+    margin-left: 170px;
+    margin-top: -45px;
+}
+#vel_angle_page{
+    height: 160px;
+    width: 236px;
+    border: 1px solid #000000;
+    margin-top: -1px;
+}
+#vel_2_page{
+    height: 160px;
+    width: 239px;
+    border: 1px solid #000000;
+    margin-left: 237px;
+    margin-top: -162px;
+}
+#start_height{
+    height: 64px;
+    width: 476px;
+    border: 1px solid #000000;
+}
+#sld_page{
+    height: 225px;
+    width: 477px;
+    border: 1px solid #000000;
+    margin-left: 170px;
+    margin-top: -45px;
+}
+#grav_page{
+    height: 225px;
+    width: 477px;
+    border: 1px solid #000000;
+    margin-left: 170px;
+    margin-top: -45px;
+}
+#tar_coord_page{
+    height: 225px;
+    width: 477px;
+    border: 1px solid #000000;
+    margin-left: 170px;
+    margin-top: -45px;
+}
+#air_res_page{
+    height: 225px;
+    width: 477px;
+    border: 1px solid #000000;
+    margin-left: 170px;
+    margin-top: -45px;
+}
