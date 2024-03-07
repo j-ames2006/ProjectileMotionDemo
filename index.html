@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projectile Motion Simulator</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <script type="module" src="javascript.js"></script>
     <script>
         //when the different checkboxes are clicked
         function check_vel(){
@@ -62,25 +63,92 @@
             document.getElementById("tar_coord_page").style.display = 'none'
             document.getElementById("air_res_page").style.display = 'block'
         }
+
+        function show_page(){
+            if(document.getElementById("air_res_choice").checked == true){
+                document.getElementById("air_res_inside_page").style.display = 'block'
+            }
+            else{
+                document.getElementById("air_res_inside_page").style.display = 'none'
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"> 
     </script>
 </head>
 <body>
-    <script type="module" src="javascript.js"></script>
+    <noscript>
+        Please Turn on JavaScript
+    </noscript>
     <canvas id="myCanvas" style="border: solid #000000;"></canvas>
+    <script type="text/javascript"> 
+        // Make a simple alert 
+        // with the given text 
+        Swal.fire(
+            'Information',
+            '- The Boxes with blue borders are editable.&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp; - The boxes with orange borders are non-editable.&emsp;&emsp;&emsp; - The upload button will save your current data in the table to LocalStorage and will remain even if you close the page.', 
+            'success'
+        );
+    </script>   
     <div>
         <div id="rectangle_left_main">
-            x-velocity
-            <input type="text" id="vel_x" readonly="true" style="width: 50px;">
-            y-velocity
-            <input type="text" id="vel_y" readonly="true" style="width: 50px;">
-            x-displacement
-            <input type="text" id="disp_x" readonly="true" style="width: 50px;">
-            y-displacement
-            <input type="text" id="disp_y" readonly="true" style="width: 50px;">
+            <div id="vectors_div">
+                <h2>Vectors</h2>
+                <p style="color: rgb(150, 5, 150);">Show Force Vectors <input type="checkbox" id="force_vec_check"></p>
+                <p style="color: green;">Show Acceleration Vectors
+                <input type="checkbox" id="acc_vec_check"></p>
+                <p style="color: blue;">Show Velocity Vectors
+                <input type="checkbox" id="vel_vec_check"></p>
+                Show Path of Object
+                <input type="checkbox" id="obj_path_check">
+            </div>
+            <div id="display_vel_disp">
+                x-velocity &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="text" id="vel_x" readonly="true" style="width: 50px; border-color: orange;">
+                y-velocity &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="text" id="vel_y" readonly="true" style="width: 50px; border-color: orange;">
+                <br>
+                x-displacement
+                <input type="text" id="disp_x" readonly="true" style="width: 50px; border-color: orange;">
+                y-displacement
+                <input type="text" id="disp_y" readonly="true" style="width: 50px; border-color: orange;">
+            </div>
+            <div id="time_div">
+                <div id="time_buttons">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button id="time_back"><img id="back_image" src="back_button.png"></button>
+                    <button id="play_pause">Play</button>
+                    <button id="time_forward"><img id="forward_image" src="forward_button.png"></button>
+                    &nbsp;
+                    Time
+                    <input id="time_box" type="text" readonly="true" style="width: 50px; border-color: orange;">
+                    <br>
+                    <input type="range" id="time_slider" value="0" style="width: 97%;">
+                    <br>
+                </div>
+                <div id="animation_speed_div">
+                    <br>
+                    Animation Speed
+                    <input id="an_speed_box" value="1x" type="text" readonly="true" style="width: 30px; text-align: center; border-color: orange;">
+                    <br>
+                    <button id="slow_down"><img id="slow_image" src="arrow_down.png"></button>
+                    <button id="speed_up"><img id="speed_image" src="up_arrow.png"></button>
+                </div>
+                <div id="experimental_div">
+                    Experimental Mode
+                    <input id="exp_check" type="checkbox">
+                    <br><br>
+                    <button id="zoom_out"><img id="zoom_out_image" src="zoom_in.png"></button>
+                    <button id="zoom_in"><img id="zoom_in_image" src="zoom_out.png"></button>
+                </div>
+            </div>
             <div id="rectangle_right_main">
                 <div id="rectangle_left_hub">
                     <div class="rectangle_check">
-                        <button id="launch_button" type="button">Launch</button>
+                        <div id="l_r_button">
+                            <button id="reset_button" type="button">Reset</button>
+                            <button id="launch_button" type="button">Launch</button>
+                        </div>
                         Velocities and Heights
                         <input type="checkbox" onchange="check_vel()" id="Vel_Hei">
                         <div id="Vel_Hei_page" style="display: none;">
@@ -88,41 +156,125 @@
                                 Angle and Velocity
                                 <input type="radio" id="angle" checked="checked" name="vel_choice"><br><br>
                                 Velocity (1-100m/s)
-                                <input type="number" min="0" max="100" step="0.1" id="vel_txt_box" style="width: 50px;">
+                                <input type="number" min="0" max="100" step="0.1" id="vel_txt_box" style="width: 50px; border-color: blue;">
                                 <input type="range" id="vel_slider" min="1" max="100" value="1" step="0.1" style="width: 200px;">
                                 <br><br>
                                 Angle (-90 - 90)
-                                <input type="number" min="0" max="100" id="ang_txt_box" style="width: 50px;">
+                                <input type="number" min="0" max="100" id="ang_txt_box" style="width: 50px; border-color: blue;">
                                 <input type="range" id="ang_slider" min="-90" max="90" value="0" style="width: 200px;">
                             </div>
                             <div id="vel_2_page">
                                 X and Y velocity
                                 <input type="radio" id="2_vel" name="vel_choice"><br><br>
                                 X-velocity (0-100m/s)
-                                <input type="number" min="0" max="100" step="0.1" id="x_vel_txt_box" style="width: 50px;">
+                                <input type="number" min="0" max="100" step="0.1" id="x_vel_txt_box" style="width: 50px; border-color: blue;">
                                 <input type="range" id="x_vel_slider" min="0" max="100" value="0" step="0.1" style="width: 200px;">
                                 <br><br>
                                 Y-velocity (0-100m/s)
-                                <input type="number" min="0" max="100" step="0.1" id="y_vel_txt_box" style="width: 50px;">
+                                <input type="number" min="0" max="100" step="0.1" id="y_vel_txt_box" style="width: 50px; border-color: blue;">
                                 <input type="range" id="y_vel_slider" min="0" max="100" value="0" step="0.1" style="width: 200px;">
                             </div>
                             <div id="start_height">
                                 Starting Height (0-100m)
-                                <input type="number" id="start_height_txt_box" min="0" max="100" step="0.1" style="width: 50px;"><br>
+                                <input type="number" id="start_height_txt_box" min="0" max="100" step="0.1" style="width: 50px; border-color: blue;"><br>
                                 <input type="range" id="start_height_slider" min="0" max="100" value="0" step="0.1" style="width: 300px; margin-left: 10px;">
                             </div>
                         </div>
                         <div id="sld_page" style="display: none;">
-                            <table style="border: 1px solid #000000;">
-                                <tr style="border: 1px solid #000000;">
-                             
+                            <br>
+                            <table id="sld_table">
+                                <tr>
+                                    <th>Ball ID</th>
+                                    <th>X-velocity</th>
+                                    <th>Y-velocity</th>
+                                    <th>Height</th>
+                                    <th>Gravity</th>
+                                    <th>drag coefficient</th>
+                                    <th>mass</th>
+                                    <th>diameter</th>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
                                 </tr>
                             </table>
+                            <div id="sld_button">
+                                Save current run
+                                <button type="button" id="save_run_button">Save</button>
+                                <button type="button" id="load_run_button">Load</button>
+                                <select id="load_delete_run_list" style="width: 100px">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                </select>
+                                <button type="button" id="delete_run_button">Delete</button>
+                                <button type="button" id="upload_run_button" style="width: 50px; align-content: left; padding: 0px;">Upload</button>
+                                <button type="button" id="clear_storage" style="width:  50px;">Clear</button>
+                            </div>
                         </div>
                         <div id="grav_page" style="display: none;">
                             <br>
                             Gravities (0.1-25m/s/s)
-                            <input type="number" id="grav_txt_box" min="0.1" max="25" step="0.1" value="0.1" style="width: 50px;">
+                            <input type="number" id="grav_txt_box" min="0.1" max="25" step="0.1" value="0.1" style="width: 50px; border-color: blue;">
                             <input type="range" id="grav_slider" min="0.1" max="25" step="0.1" value="9.8" style="width: 300px;">
                             <br>
                             <br>
@@ -139,24 +291,97 @@
                             </select>
                         </div>
                         <div id="tar_coord_page" style="display: none;">
-
+                            <div id="tar_coord_table">
+                                <table>
+                                    <br>
+                                    <tr>
+                                        <th>Number &nbsp; &nbsp;</th>
+                                        <th>X-coord &nbsp; &nbsp;</th>
+                                        <th>Y-coord &nbsp;</th>
+                                    </tr>
+                                    <tr>
+                                        <td>1<input type="checkbox" id="tar_coord_1"></td>
+                                        <td id="x_coord_1">--</td>
+                                        <td id="y_coord_1">--</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2<input type="checkbox" id="tar_coord_2"></td>
+                                        <td id="x_coord_2">--</td>
+                                        <td id="y_coord_2">--</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3<input type="checkbox" id="tar_coord_3"></td>
+                                        <td id="x_coord_3">--</td>
+                                        <td id="y_coord_3">--</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4<input type="checkbox" id="tar_coord_4"></td>
+                                        <td id="x_coord_4">--</td>
+                                        <td id="y_coord_4">--</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5<input type="checkbox" id="tar_coord_5"></td>
+                                        <td id="x_coord_5">--</td>
+                                        <td id="y_coord_5">--</td>
+                                    </tr>
+                                    <tr>
+                                        <td>6<input type="checkbox" id="tar_coord_6"></td>
+                                        <td id="x_coord_6">--</td>
+                                        <td id="y_coord_6">--</td>
+                                    </tr>
+                                    <tr>
+                                        <td>7<input type="checkbox" id="tar_coord_7"></td>
+                                        <td id="x_coord_7">--</td>
+                                        <td id="y_coord_7">--</td>
+                                    </tr>
+                                    <tr>
+                                        <td>8<input type="checkbox" id="tar_coord_8"></td>
+                                        <td id="x_coord_8">--</td>
+                                        <td id="y_coord_8">--</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div id="tar_coord_add_page">
+                                Add (0,0) to (100,100)<br>
+                                X<input id="x_coord_input" type="number" min="0" max="100" step="0.1" value="" style="width: 50px; border-color: blue;">
+                                Y<input id="y_coord_input" type="number" min="0" max="100" step="0.1" value="" style="width: 50px; border-color: blue;">
+                                <button type="button" id="add_coord">Add</button>
+                                <br>
+                                <br>
+                                Delete<br>
+                                <select id="coord_list" style="width: 100px;">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                </select>
+                                <button type="button" id="delete_coord">Delete</button>
+                                <br><br><br>
+                                (click checkbox to show point)
+                            </div>
                         </div>
                         <div id="air_res_page" style="display: none;">
                             <br>
                             Air Resistance
-                            <input type="checkbox" id="air_res_choice">
+                            <input type="checkbox" onchange="show_page()" id="air_res_choice">
                             <br><br>
-                            Drag Coefficient (0.01-2.00)
-                            <input type="number" min="0.01" max="2.00" value="0.35" step="0.01" id="drag_coef_txt_box" style="width: 50px;"><br>
-                            <input type="range" min="0.01" max="2.00" value="0.35" step="0.01" id="drag_coef_slider" style="width: 200px;">
-                            <br><br>
-                            Mass (1-50kg)
-                            <input type="number" min="1" max="50" step="1" value="10" id="mass_txt_box" style="width: 50px;">
-                            <br><input type="range" min="1" max="50" step="1" value="10" id="mass_slider" style="width: 200px;">
-                            <br><br>
-                            Diameter (1-10m)
-                            <input type="number" min="1" max="30" step="0.1" value="5" id="diam_txt_box" style="width: 50px;">
-                            <br><input type="range" min="1" max="30" step="0.1" value="5" id="diam_slider" style="width: 200px;">
+                                <div id="air_res_inside_page" style="display: none;">
+                                Drag Coefficient (0.01-2.00)
+                                <input type="number" min="0.01" max="2.00" value="0.35" step="0.01" id="drag_coef_txt_box" style="width: 50px; border-color: blue;"><br>
+                                <input type="range" min="0.01" max="2.00" value="0.35" step="0.01" id="drag_coef_slider" style="width: 200px;">
+                                <br><br>
+                                Mass (1-50kg)
+                                <input type="number" min="1" max="50" step="1" value="10" id="mass_txt_box" style="width: 50px; border-color: blue;">
+                                <br><input type="range" min="1" max="50" step="1" value="10" id="mass_slider" style="width: 200px;">
+                                <br><br>
+                                Diameter (1-50cm)
+                                <input type="number" min="1" max="50" step="0.1" value="30" id="diam_txt_box" style="width: 50px; border-color: blue;">
+                                <br><input type="range" min="1" max="50" step="0.1" value="30" id="diam_slider" style="width: 200px;">
+                            </div>
                         </div>
                     </div>
                     <div class="rectangle_check"><br>
@@ -177,6 +402,6 @@
                     </div>
                 </div>
             </div>
-            </div>
+            </div>  
 </body>
 </html>
