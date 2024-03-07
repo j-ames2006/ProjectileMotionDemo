@@ -8,7 +8,7 @@
     width: 650px;
     margin-left: 600px;
     border: 1px solid #000000;
-    margin-top: -22.6px;
+    margin-top: -228.6px;
 }
 #rectangle_left_hub{
     height: 225px;
@@ -21,7 +21,13 @@
     border: 1px solid #000000;
 }
 #launch_button{
-    margin-left: 589px;
+    width: 55px;
+}
+#reset_button{
+    margin-left: 543px;
+}
+#l_r_button{
+    display: flex;
 }
 #Vel_Hei_page{
     height: 225px;
@@ -75,4 +81,135 @@
     border: 1px solid #000000;
     margin-left: 170px;
     margin-top: -45px;
+}
+#tar_coord_table{
+    margin-left: 50px;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+#tar_coord_add_page{
+    margin-left: 270px;
+    margin-top: -200px;
+    width: 206px;
+    height: 199px;
+    border: 1px solid #000000;
+}
+#sld_buttons{
+    border: 1px solid #000000;
+    width: 477px;
+    height: 20px;
+    display: flex;
+}
+#vectors_div{
+    height: 225px;
+    width: 200px;
+    border: 1px solid #000000;
+}
+#display_vel_disp{
+    height: 60px;
+    width: 398px;
+    border: 1px solid #000000;
+    margin-left: 201px;
+    margin-top: -228px;
+}
+#time_div{
+    height: 164px;
+    width: 398px;
+    border: 1px solid #000000;
+    margin-left: 201px;
+
+}
+#play_pause{
+    display: inline-block;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+}
+#play_image{
+    width: 45px;
+    height: 45px;
+}
+#pause_image{
+    width: 45px;
+    height: 45px;
+}
+#time_back{
+    display: inline-block;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+#back_image{
+    width: 25px;
+    height: 20px;
+}
+#time_forward{
+    display: inline-block;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+#forward_image{
+    width: 25px;
+    height: 25px;
+}
+#time_buttons{
+    text-align: center;
+    width: 400px;
+    height: 60px;
+}
+#animation_speed_div{
+    text-align: center;
+    width: 200px;
+    margin-top: 10px;
+    height: 92px;
+}
+#slow_down{
+    text-align: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: none;
+}   
+#speed_up{
+    text-align: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: none;
+}
+#slow_image{
+    width: 30px;
+    height: 30px;
+}
+#speed_image{
+    height: 30px;
+    width: 30px;
+}
+#experimental_div{
+    margin-left: 201px;
+    margin-top: -92px;
+    text-align: center;
+}
+#zoom_in_image{
+    width: 40px;
+    height: 40px;
+}
+#zoom_out_image{
+    width: 40px;
+    height: 40px;
+}
+#zoom_in{
+    border: none;
+    border-radius: 50%;
+}
+#zoom_out{
+    border: none;
+    border-radius: 50%;
 }
