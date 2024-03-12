@@ -78,9 +78,8 @@
 </head>
 <body>
     <noscript>
-        Please Turn on JavaScript
+        <h1>Please Turn on JavaScript</h1>
     </noscript>
-    <canvas id="myCanvas" style="border: solid #000000;"></canvas>
     <script type="text/javascript"> 
         // Make a simple alert 
         // with the given text 
@@ -90,7 +89,8 @@
             'success'
         );
     </script>   
-    <div>
+    <div id="Main_Web_page" style="display: none;">
+        <canvas id="myCanvas" style="border: solid #000000;"></canvas>
         <div id="rectangle_left_main">
             <div id="vectors_div">
                 <h2>Vectors</h2>
@@ -402,6 +402,9 @@
                     </div>
                 </div>
             </div>
-            </div>  
+    </div>  
+    <script type="text/javascript">
+        document.getElementById("Main_Web_page").style.display = 'block'
+    </script>
 </body>
 </html>
